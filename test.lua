@@ -12,7 +12,7 @@ end
 
 function test.draw()
 	
-	draw_layer(map.layers[1])
+	draw_layer(map.layers[1], LM.getX(), LM.getY())
 	
 	LG.draw(img.bonus2, LM.getX(), 200)
 	LG.draw(img.bonus3, 200, LM.getY())

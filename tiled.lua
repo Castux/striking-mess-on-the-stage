@@ -1,7 +1,25 @@
--- A few functions to read data from Tiled lua maps
+--[[
+A few functions to read data from Tiled lua maps
+
+BEWARE: in Tiled, maps must be saved (of course) using the Lua export,
+but be sure to check the following things:
+
+- in Preferences->Saving, check "Use binary encoding" but NOT "Compress
+layer data"
+
+- the tileset options have no incidence (not complete plugin)
+
+- all tilesets must be created with "Reference tileset image" checked,
+and of course a valid image there. The name of the image must be the same
+as the one autoloaded. Tilespacing and margins are not supported.
+
+- all tilesets must be embedded, external tsx files are not supported
+
+WARNING: Tiled cannot load Lua files, so be sure to keep a native file too.
+]]
+
 
 require "base64"
-
 
 
 -- Use the image size info to compute stuff
@@ -130,15 +148,22 @@ function convert_map(map)
 
 end
 
--- 
-function draw_layer(layer)
+function draw_map(map, offx, offy)
 	
-	for i,v in ipairs(layer.data) do	
-		draw_tile(v)
+	for _,layer in ipairs(map, layers) do
+		draw_layer(layer, offx, offy)
+	end
+	
+end
+
+function draw_layer(layer, offx, offy)
+	
+	for _,v in ipairs(layer.data) do	
+		draw_tile(v, offx, offy)
 	end
 end
 
-function draw_tile(t)
+function draw_tile(t, offx, offy)
 	
 	local gid = t.gid
 	
@@ -146,6 +171,7 @@ function draw_tile(t)
 		return
 	end
 	
-	LG.draws(gid.img, t.x, t.y, gid.x, gid.y, gid.w, gid.h)
+	local offx,offy = offx or 0, offy or 0
 	
+	LG.draws(gid.img, t.x + offx, t.y + offy, gid.x, gid.y, gid.w, gid.h)	
 end
