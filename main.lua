@@ -102,10 +102,13 @@ function load()
 	--[[ Automatic loading ]]
 	
 	-- Images
-	autoload("img", LG.newImage)		
-	
+	autoload("img", LG.newImage)
+		
 	-- Sounds
-	autoload("snd", LA.newSound)		
+	autoload("snd", LA.newSound)
+	
+	-- Music
+	autoload("mus", LA.newMusic)
 end
 
 setGameState(test)

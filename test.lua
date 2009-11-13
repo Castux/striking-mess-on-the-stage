@@ -9,7 +9,12 @@ function test.draw()
 
 end
 
-function test.mousepressed(b,x,y)
+function test.mousepressed(x,y,b)
 	
 	LA.play(snd.explo3)
+	
+	if b == love.mouse_right then
+		print(mus.arcticum)
+		LA.play(mus.arcticum)
+	end
 end
