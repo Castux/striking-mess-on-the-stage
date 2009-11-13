@@ -15,18 +15,29 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 
---[[
-love.filesystem.require("game.lua")
-love.filesystem.require("menu.lua")
-love.filesystem.require("win.lua")
---]]
 
-clr = love.graphics.newColor
+-- Include other files
+
+require "test"
+
+------------------------------------------------------------------------
+--[[ Some shortcuts ]]--------------------------------------------------
+------------------------------------------------------------------------
+
 LG = love.graphics
+LM = love.mouse
+LA = love.audio
+
+CLR = love.graphics.newColor
+
 TI = table.insert
 rand = math.random
 
 answer = 42
+
+------------------------------------------------------------------------
+--[[ Game state system ]]-----------------------------------------------
+------------------------------------------------------------------------
 
 function setGameState(state)
 
@@ -49,12 +60,53 @@ end
 
 function no_op() end
 
-function load()
 
-	--menu.load()
-	--game.load()
-	--win.load()
+------------------------------------------------------------------------
+--[[ Assets loading system ]]-------------------------------------------
+------------------------------------------------------------------------
+
+-- Load all elements of folder "folder" using function "func", and put them
+-- in the global table "folder"
+-- If ext_filter is provided, load only files with this extension
+
+function autoload(folder, func, ext_filter)
+
+	-- make global table with name "folder"
 	
+	local tab = {}
+	_G[folder] = tab
+		
+	local folder = folder .. "/"
+	
+	-- get all files in it
+	local list = love.filesystem.enumerate(folder)
+	
+	for _,path in ipairs(list) do
+		
+		-- Get the name without the extension
+		local name,ext = path:match("^(.*)%.([^%.]+)$")
+		
+		-- For all matches, apply function
+		if name and ext_filter == nil or ext_filter == ext then
+			tab[name] = func(folder .. path)
+			print("Loaded " .. folder .. path)
+		end
+		
+	end
 end
 
---setGameState(menu)
+-- LÖVE callback
+
+function load()
+
+	--[[ Automatic loading ]]
+	
+	-- Images
+	autoload("img", LG.newImage)		
+	
+	-- Sounds
+	autoload("snd", LA.newSound)		
+end
+
+setGameState(test)
+
