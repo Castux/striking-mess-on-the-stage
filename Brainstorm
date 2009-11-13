@@ -3,8 +3,6 @@ Les idées de la mort qui tue
 
 Jouer deux personnages à la fois, un Tragi, un Comi. Chacun a ses capacités/pouvoirs et ses limitations (donc compromis à faire). On peut changer de l'un à l'autre quand on en a besoin (dans certaines zones autorisées seulement ?)
 
-Niveaux puzzle/plateforme ?
-
 Contexte : deux dieux grecs qui s'affrontent (Dyonisos pour la tragédie et plus ou moins la comédie aussi. Ou alors il pète un cable donc ça se passe mal), ou des muses (Thalie - comédie, Melpomène - tragédie). Et leur influence sur les gens dans le monde devient déséquilibrée.
 
 Genre les gens meurent de rire en explosant (étouffé de rire... youpi), ou tristesse (se tirent une balle, se noient dans leurs larmes, se pendent, etc) et faut les sauver, en réequilibrant la Force.
@@ -16,4 +14,28 @@ Un élément qui semble intéressant serait que toi aussi faut t'équilibrer. Si
 Hé, idée : Dyonisos pète un cable, il contrôle plus rien, les gens craquent. On incarne les deux muses sus-citées pour sauver le monde.
 
 
-Maintenant 
+Maintenant comment se manifeste ce déséquilibre ? Spatialement, certains objects influencent les gens autour ? Genre des objects marrants et des objets tristes.
+Et faut soit les détruire, soit les déplacer pour s'assurer qu'ils se compensent mutuellement ? (visualiser les zones d'influence par des sphères lumineuses ?)
+Tout en faisant attention parce que nous même on promenne notre zone d'influence avec nous.
+
+
+Format:
+======
+
+1. Contrôle du personnage dans un univers "réaliste" (pas abstrait)
+
+- Niveaux puzzle/plateforme en vue de côté
+	Peut être sympa, mais nécessite d'écrire des niveaux (aléatoire c'est moins facile), et d'avoir probablement beaucoup de sprites.
+- Vue de dessus
+	Idem.
+
+2. Action ou pas ?
+
+Plateformes -> physique, temps réel. Sauter pour atteindre des plateformes, éviter des pièges, buter des méchants, utiliser des "armes", etc.
+
+Vue de dessus -> pareil, on peut avoir des méchants et des armes
+
+3. Plutôt stratégie/reflexion ?
+
+Temps réel, tour par tour ? Contrôler plusieurs personnages (ou les deux, mais en même temps) sur un "plateau" de jeu (fixe ou aléatoire), où ils interagissent avec des personnages/objets ?
+Jeu équivalent à un jeu abstrait (echecs, dames, whatéveure) mais avec un thème "tragédie comédie"
