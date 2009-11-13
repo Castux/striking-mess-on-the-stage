@@ -173,5 +173,5 @@ function draw_tile(t, offx, offy)
 	
 	local offx,offy = offx or 0, offy or 0
 	
-	LG.draws(gid.img, t.x + offx, t.y + offy, gid.x, gid.y, gid.w, gid.h)	
+	LG.draws(gid.img, t.x + offx - gid.w/2, t.y + offy - gid.h/2, gid.x, gid.y, gid.w, gid.h)	
 end
