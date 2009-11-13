@@ -32,6 +32,7 @@ CLR = love.graphics.newColor
 
 TI = table.insert
 rand = math.random
+floor = math.floor
 
 answer = 42
 
@@ -97,7 +98,7 @@ end
 
 -- LÖVE callback
 
-function load()
+--function load()
 
 	--[[ Automatic loading ]]
 	
@@ -109,7 +110,9 @@ function load()
 	
 	-- Music
 	autoload("mus", LA.newMusic)
-end
+	
+	setGameState(test)
+--end
 
-setGameState(test)
+
 

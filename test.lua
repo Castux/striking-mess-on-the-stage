@@ -7,16 +7,12 @@ test = {}
 
 function test.init()
 
-	local layer = map.layers[1]
-	convert_layer(layer)
-
-	for i = 1,502 do
-		print(i,get_tile(map,i))
-	end	
-	
+	convert_map(map)
 end
 
 function test.draw()
+	
+	draw_layer(map.layers[1])
 	
 	LG.draw(img.bonus2, LM.getX(), 200)
 	LG.draw(img.bonus3, 200, LM.getY())
