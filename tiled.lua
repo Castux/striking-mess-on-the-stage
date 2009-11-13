@@ -65,7 +65,7 @@ function convert_tileset(ts, gid_tab)
 				
 				img = ts.img,
 				
-				-- props = 
+				props = {}
 			}
 			
 			gid_tab[gid] = tile
@@ -76,6 +76,12 @@ function convert_tileset(ts, gid_tab)
 	-- (Hopefully Tiled counts firstgids correctly and it won't overlap)
 	
 	-- Add properties to tiles
+	for i,v in ipairs(ts) do
+		if v.label == "tile" then
+			
+			gid_tab[v.id + ts.firstgid].props = v.properties
+		end
+	end
 	
 end
 
@@ -172,6 +178,17 @@ function draw_tile(t, offx, offy)
 	end
 	
 	local offx,offy = offx or 0, offy or 0
+	
+	--[[ Properties test
+	
+	if gid.props["blocking"] then
+		LG.circle(love.draw_fill, t.x + offx - gid.w/2, t.y + offy - gid.h/2, 30)
+		return
+	elseif gid.props["viewblock"] then
+		LG.circle(love.draw_fill, t.x + offx - gid.w/2, t.y + offy - gid.h/2, 15)
+		return
+	end
+	]]
 	
 	LG.draws(gid.img, t.x + offx - gid.w/2, t.y + offy - gid.h/2, gid.x, gid.y, gid.w, gid.h)	
 end

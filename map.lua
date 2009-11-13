@@ -19,6 +19,20 @@ map = {
         ["label"] = "image";
         ["source"] = "starfield.png";
       };
+      {
+        ["label"] = "tile";
+        ["id"] = 7;
+        ["properties"] = {
+          ["viewblock"] = "true";
+        };
+      };
+      {
+        ["label"] = "tile";
+        ["id"] = 13;
+        ["properties"] = {
+          ["blocking"] = "true";
+        };
+      };
     };
   };
   ["layers"] = {
