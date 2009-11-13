@@ -1,6 +1,20 @@
 -- Just a fake game mode to test stuff around
 
+require "map"
+require "tiled"
+
 test = {}
+
+function test.init()
+
+	local layer = map.layers[1]
+	convert_layer(layer)
+
+	for i = 1,502 do
+		print(i,get_tile(map,i))
+	end	
+	
+end
 
 function test.draw()
 	
