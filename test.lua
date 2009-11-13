@@ -4,17 +4,17 @@ test = {}
 
 function test.draw()
 	
-	LG.draw(img.bonus1, LM.getX(), 20)
+	LG.draw(img.bonus2, LM.getX(), 200)
 	LG.draw(img.bonus3, 200, LM.getY())
 
 end
 
 function test.mousepressed(x,y,b)
 	
-	LA.play(snd.explo3)
 	
-	if b == love.mouse_right then
-		print(mus.arcticum)
+	if b == love.mouse_left then
+		LA.play(snd.explo3)
+	elseif b == love.mouse_right then
 		LA.play(mus.arcticum)
 	end
 end
