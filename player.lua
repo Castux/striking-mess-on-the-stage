@@ -54,19 +54,21 @@ function Player:update(dt)
 	local inflspeed = 0.1
 	local infldist = 100
 	
-	-- Check proximity with actors
+	-- Check proximity with entities, except self
 	
-	for i,v in ipairs(actors) do
-		local dist = self:distance(v)	
-		
-		if dist < infldist then
-			self.close[v] = true	-- TODO for later animation, need to know new ones and ones who leave
-		else
-			self.close[v] = nil
+	for i,v in ipairs(entities) do
+		if v ~= self then
+			local dist = self:distance(v)
+			
+			if dist < infldist then
+				self.close[v] = true	-- TODO for later animation, need to know new ones and ones who leave
+			else
+				self.close[v] = nil
+			end
 		end
 	end
 	
-	-- Apply actors influence
+	-- Apply entity influence
 	for k,_ in pairs(self.close) do
 		
 		local dir

@@ -14,5 +14,5 @@ end
 
 function Muse:getsprite()
 	
-	return self.side == 1 and img.tragi or img.comi
+	return self.side == 1 and img.musetragi or img.musecomi
 end
