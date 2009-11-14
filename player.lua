@@ -16,12 +16,13 @@ end
 function Player:update(dt)
 	
 	local accel = 1000
-	local maxspeed = 150
-	local deccel = 3000
+	local maxspeed = 300
+
+	local drag = 0.9
 	
 	local ax,ay = 0,0
 	
-	-- Compute speed
+	-- Compute speed from keys
 	
 	if LK(love.key_left) then
 		ax = ax - accel
@@ -36,24 +37,40 @@ function Player:update(dt)
 		ay = ay + accel
 	end
 	
+
+	-- If no keys are pressed, deccelerate
+	
 	if ax == 0 and ay == 0 then
-		local norm = math.sqrt(self.vx^2 + self.vy^2)
-		if norm == 0 then norm = 1 end
-		
-		ax = - deccel * self.vx/norm
-		ay = - deccel * self.vy/norm
+		self.vx = self.vx * drag
+		self.vy = self.vy * drag
+	
+	-- Otherwise, integrate speed normally
+	
+	else
+		self.vx = self.vx + ax * dt
+		self.vy = self.vy + ay * dt
 	end
 	
+	-- Speed limit
 	
-	-- Integrate
+	if self.vx > maxspeed then
+		self.vx = maxspeed
+	elseif self.vx < - maxspeed then
+		self.vx = - maxspeed
+	end
 	
-	self.vx = self.vx + ax * dt
-	self.vy = self.vy + ay * dt
+	if self.vy > maxspeed then
+		self.vy = maxspeed
+	elseif self.vy < - maxspeed then
+		self.vy = - maxspeed
+	end
+	
+	-- Integrate position
 	
 	self.x = self.x + self.vx * dt
 	self.y = self.y + self.vy * dt
 	
-	-- Check collision with scene borders
+	-- Position limits
 	
 	if self.x < 0 then
 		self.x = 0

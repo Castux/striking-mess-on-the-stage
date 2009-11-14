@@ -65,5 +65,5 @@ function game.draw()
 			v:draw()
 		end
 	end
-
+	
 end

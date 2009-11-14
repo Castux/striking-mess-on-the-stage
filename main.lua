@@ -36,6 +36,14 @@ TI = table.insert
 rand = math.random
 floor = math.floor
 
+function sign(x)
+	if x == 0 then
+		return 0
+	else
+		return x > 0 and 1 or -1
+	end
+end
+
 answer = 42
 
 ------------------------------------------------------------------------
