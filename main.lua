@@ -19,6 +19,7 @@
 -- Include other files
 
 require "test"
+require "game"
 
 ------------------------------------------------------------------------
 --[[ Some shortcuts ]]--------------------------------------------------
@@ -27,8 +28,9 @@ require "test"
 LG = love.graphics
 LM = love.mouse
 LA = love.audio
+LK = love.keyboard.isDown
 
-CLR = love.graphics.newColor
+CLR = love.graphics.setColor
 
 TI = table.insert
 rand = math.random
@@ -96,23 +98,23 @@ function autoload(folder, func, ext_filter)
 	end
 end
 
--- LÖVE callback
 
---function load()
+--[[ Automatic loading. Not sure if the load() callback is useful ]]
 
-	--[[ Automatic loading ]]
+-- Images
+autoload("img", LG.newImage)
 	
-	-- Images
-	autoload("img", LG.newImage)
-		
-	-- Sounds
-	autoload("snd", LA.newSound)
-	
-	-- Music
-	autoload("mus", LA.newMusic)
-	
-	setGameState(test)
---end
+-- Sounds
+autoload("snd", LA.newSound)
 
+-- Music
+autoload("mus", LA.newMusic)
 
+--[[ Some things to take care of ]]
+
+math.randomseed(os.time())
+
+--[[ Set initial game state ]]
+
+setGameState(game)
 
