@@ -30,7 +30,7 @@ function game.init()
 	}
 	
 	-- Make an entity list (entities are updated and drawn automatically)
-	
+	-- Entities should have an y field, for sorting/drawing purposes
 	entities = {}
 	
 	-- Make a player!
@@ -77,8 +77,14 @@ function game.draw()
 		LG.circle(love.draw_fill, x, y, 5)
 	end
 	
-	-- Draw all entities
-	-- (Later we will need to sort objects and characters back to front)
+	-- Sort entities back to front (increasing y)
+	
+	table.sort(entities, function(a,b)
+		return a.y < b.y
+	end)
+	
+	-- And draw them all
+	
 	for i,v in ipairs(entities) do
 		if v.draw then
 			v:draw()
