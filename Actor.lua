@@ -59,6 +59,7 @@ function Actor:draw()
 	
 	local x,y,s = game.game2screen(self.x, self.y)
 	
+	--[[ Debug crap
 	if self.targetx and self.targety then
 		CLR(0,0,0)
 		LG.draw(self.targetx .. ":" .. self.targety, x, y)
@@ -69,4 +70,5 @@ function Actor:draw()
 		LG.setLineWidth(5)
 		LG.line(self.x, self.y, self.targetx, self.targety)
 	end
+	--]]
 end
