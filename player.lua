@@ -2,8 +2,6 @@ require "Character.lua"
 
 
 
-local inflspeed = 0.1
-local prox = 100
 
 -- Make Player inherit from Character
 
@@ -13,9 +11,8 @@ function Player:init(x,y)
 	
 	Player.super.init(self,x,y)
 	
-	-- Specific sprite
-	self.sprite = img.bonus2
-	
+	self.side = team
+		
 	-- tragi-comi bar: -1..1
 	self.bar = 0
 	
@@ -54,12 +51,18 @@ function Player:update(dt)
 	-- Move in consequence
 	self:accelerate(ax,ay,dt)
 	
+	
+	--[[ Interaction with actors ]]
+	
+	local inflspeed = 0.1
+	local infldist = 100
+	
 	-- Check proximity with actors
-		
+	
 	for i,v in ipairs(actors) do
 		local dist = self:distance(v)	
 		
-		if dist < prox then
+		if dist < infldist then
 			self.close[v] = true	-- TODO for later animation, need to know new ones and ones who leave
 		else
 			self.close[v] = nil
@@ -99,12 +102,12 @@ function Player:drawbar()
 	LG.rectangle(love.draw_fill, x - off, y - off, w + 2*off, h + 2*off)
 	
 	-- bar
-	if self.bar > 0 then
+	if self.bar < 0 then
 		CLR(0,0,255)
-		LG.rectangle(love.draw_fill, x, y + h/2, w, self.bar*h/2)
-	elseif self.bar < 0 then
+		LG.rectangle(love.draw_fill, x, y + h/2, w, -self.bar*h/2)
+	elseif self.bar > 0 then
 		CLR(255,0,255)
-		LG.rectangle(love.draw_fill, x, y + h/2 + self.bar*h/2, w, -self.bar*h/2)
+		LG.rectangle(love.draw_fill, x, y + h/2 - self.bar*h/2, w, self.bar*h/2)
 	end
 	
 end
@@ -124,4 +127,40 @@ function Player:draw()
 		LG.setLineWidth(4)
 		LG.line(x,y,x2,y2)
 	end
+end
+
+function Player:tryswap()
+
+	local swapdist = 50
+	local swapcost = 0.4
+	
+	local candidate
+
+	for i,v in ipairs(actors) do
+		
+		-- check only foes
+		if v.side == foes then
+			local dist = self:distance(v)	
+			
+			if dist < swapdist then
+				candidate = v
+				break
+			end
+		end
+	end
+	
+	if candidate then
+		
+		-- consume some energy
+		if team == 1 then	-- comi->tragi "spends" tragi so augments comi
+			dir = 1
+		else
+			dir = -1	-- tragi->comi "spends" comi so aumgents tragi
+		end
+		
+		self.bar = self.bar + dir * swapcost
+		
+		candidate:swap()
+	end
+
 end

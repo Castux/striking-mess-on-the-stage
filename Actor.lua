@@ -12,7 +12,6 @@ function Actor:init(x,y,side)
 	-- Pick a side
 	self.side = side or rand(2)
 	
-	
 	-- Choose sprite accordingly
 	if self.side == 1 then
 		self.sprite = img.bonus1
@@ -54,22 +53,10 @@ function Actor:update(dt)
 
 end
 
-function Actor:draw()
+
+function Actor:swap()
 	
-	Actor.super.draw(self)
+	-- will maybe have fancy animation later
 	
-	local x,y,s = game.game2screen(self.x, self.y)
-	
-	--[[ Debug crap
-	if self.targetx and self.targety then
-		CLR(0,0,0)
-		LG.draw(self.targetx .. ":" .. self.targety, x, y)
-		LG.draw(floor(self.x) .. ":" .. floor(self.y), x, y + 12)
-		LG.draw(floor(self.vx) .. ":" .. floor(self.vy), x, y + 2*12)
-		
-		CLR(200,0,0)
-		LG.setLineWidth(5)
-		LG.line(self.x, self.y, self.targetx, self.targety)
-	end
-	--]]
+	self.side = team
 end

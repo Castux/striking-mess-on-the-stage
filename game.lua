@@ -52,6 +52,8 @@ function game.keypressed(k)
 	
 	if k == love.key_escape then
 		love.system.exit()
+	elseif k == love.key_space then
+		player:tryswap()
 	end
 	
 end
