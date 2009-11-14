@@ -39,3 +39,143 @@ Vue de dessus -> pareil, on peut avoir des méchants et des armes
 
 Temps réel, tour par tour ? Contrôler plusieurs personnages (ou les deux, mais en même temps) sur un "plateau" de jeu (fixe ou aléatoire), où ils interagissent avec des personnages/objets ?
 Jeu équivalent à un jeu abstrait (echecs, dames, whatéveure) mais avec un thème "tragédie comédie"
+
+
+===============================
+
+(12:41:58 AM) Tût-tûûût: je pensais une scène de théâtre
+(12:42:05 AM) Tût-tûûût: avec des tragis et des comis
+(12:42:29 AM) Tût-tûûût: et suivant la pièce qui doit se jouer on doit transformer les tragis en comis ou l'inverse
+(12:42:52 AM) Tût-tûûût: mais après comment on sait si on gagne ?
+(12:43:08 AM) Tût-tûûût: pasque personne est tout beau ou tout moche, on sait pas qui gagne
+(12:43:27 AM) Noé: ce serait quoi le mécanisme du jeu ?
+(12:44:23 AM) Tût-tûûût: soit un shoot basique, soit un metteur en scène fou qui doit courir pour retourner les masques partout sur scène
+(12:45:44 AM) Tût-tûûût: et sinon je pensais à une phase de réflexion avec un jeu genre othello ou chépa quoi, pendant lequel on récupère de l'énergie
+(12:45:56 AM) Tût-tûûût: puis ensuite une phase action où on utilise cette énergie
+
+(12:47:52 AM) Noé: idée : préparer le décor de la pièce à jouer, en installant les bons types d'objets, mais les persos opposés les changent quand tu vas voir ailleurs
+(12:49:12 AM) Tût-tûûût: héhé, le décor de la pièce à jouer, sympa comme idée
+(12:49:29 AM) Tût-tûûût: et ça prend de l'énergie comique pour changer des objets tragiques en objets comiques et réciproquement
+(12:49:59 AM) Tût-tûûût: donc tu dois régulièrement "faire le plein"... hm... discussion avec un dieu ? Le directeur du théâtre ?
+
+(12:55:53 AM) Tût-tûûût: oui un décor avec un bateau échoué après une tempête pour la partie tragédie, ça peut être pas mal
+(12:55:53 AM) Tût-tûûût: un décor de vaudeville pour la partie comédie
+
+(01:02:15 AM) Tût-tûûût: l'idée, c'est que la scène on la voit en 2D
+(01:02:23 AM) Tût-tûûût: le joueur est côté public
+(01:03:12 AM) Tût-tûûût: y'a 4, voire 5 entrées pour les "acteurs" : à gauche et à droite en bas, et en haut (on leur dessine des ailes en carton et des sangles)
+
+
+Recapitulation :
+----------------
+
+(01:09:06 AM) Noé: donc, si on répakitule :
+(01:09:23 AM) Tût-tûûût: je t'écoute
+(01:09:43 AM) Noé: chaque partie est au hasard soit tragi soit comi
+(01:09:51 AM) Tût-tûûût: oui
+(01:10:01 AM) Tût-tûûût: le décor et la musique sont en fonction
+(01:10:13 AM) Noé: le but est d'installer le décor qui convient pour la pièce
+(01:10:25 AM) Noé: et d'avoir les bons acteurs
+(01:10:30 AM) Tût-tûûût: oui
+(01:10:56 AM) Tût-tûûût: si on se fait toucher par un acteur qui n'est pas de la même muse que soi, on perd un peu de vie/tragique/comique
+(01:11:01 AM) Noé: problème : l'autre muse s'amuse à changer les choses en sa faveur (le décor et les gens)
+(01:11:13 AM) Tût-tûûût: oui
+(01:11:42 AM) Noé: toucher ? en 2d à plat, ça va bcp se toucher non ?
+(01:11:55 AM) Tût-tûûût: oui
+(01:12:28 AM) Tût-tûûût: ou alors une simple jauge d'équilibre
+(01:12:37 AM) Noé: Maintenant, comment on fait pour souitcher un acteur/objet ?
+(01:13:24 AM) Tût-tûûût: comme on est au théâtre, c'est tout du toc. On donne un coup dans un élément de décor pour le retourner, on change une colonne tragique en (?) comique
+(01:13:55 AM) Tût-tûûût: on retourne le masque d'un acteur pour le faire changer de camp
+(01:14:04 AM) Tût-tûûût: (de couleur : comique en jaune, tragique en bleu ?)
+(01:14:25 AM) Tût-tûûût: (ça va faire la poste, un peu)
+(01:14:34 AM) Tût-tûûût: (comique en orange, comme ça c'est complémentaire)
+(01:15:01 AM) Noé: mais quand on est proche d'un "autre", on perd de la vie
+(01:15:27 AM) Noé: du coup je pensais qu'il fallait les éviter
+(01:16:40 AM) Tût-tûûût: on peut privilégier la barre d'équilibre alors
+(01:16:57 AM) Tût-tûûût: si elle penche en ta défaveur trop longtemps, c'est pas bon
+(01:17:15 AM) Noé: ni en ta faveur 
+(01:17:17 AM) Noé: ?
+(01:17:20 AM) Tût-tûûût: en même temps l'objectif c'est de tout rendre de ta couleur, donc au bout d'un moment tu es assuré de ne pas avoir de problème
+(01:17:39 AM) Noé: dyionisos te foudroie YIKES
+(01:17:44 AM) Tût-tûûût: oui
+(01:18:33 AM) Tût-tûûût: mais du coup ça veut dire qu'une part de ton décor et de tes acteurs doit rester dans l'autre camp
+(01:18:50 AM) Noé: grumph
+(01:19:09 AM) Noé: non !
+(01:19:13 AM) Noé: y'a l'autre muse
+(01:19:16 AM) Noé: qui sera toujorus là
+(01:19:18 AM) Tût-tûûût: oui
+(01:19:22 AM) Noé: elle peut servir de recharche
+(01:19:30 AM) Tût-tûûût: de recharge ?
+(01:19:37 AM) Noé: de équilibrage
+(01:19:45 AM) Noé: vu que l'autre muse on peut pas la souitcher
+(01:19:51 AM) Tût-tûûût: oui
+(01:19:54 AM) Noé: bon
+(01:19:58 AM) Noé: bien*
+(01:20:04 AM) Tût-tûûût: bion
+(01:20:21 AM) Noé: ça prend forme
+(01:20:41 AM) Noé: et sinon les acteurs ils font quoi ?
+(01:20:43 AM) Noé: juste se balader ?
+(01:21:02 AM) Tût-tûûût: je les verrais bien mettre le boxon dans ton décor aussi
+(01:21:17 AM) Noé: possible oui
+(01:21:28 AM) Noé: faudra voir si ça rend pas trop dur
+(01:21:34 AM) Tût-tûûût: la muse ennemie agit uniquement sur les acteurs, les acteurs agissent sur le décor
+(01:21:46 AM) Noé: pourquoi pas oui
+(01:22:02 AM) Noé: (et nous aussi du coup, non ?)
+(01:22:18 AM) Tût-tûûût: (nous on touche pas les acteurs alors ?)
+(01:22:38 AM) Noé: le décor, tu veux dire ?
+(01:23:00 AM) Tût-tûûût: hmmmm
+(01:23:28 AM) Tût-tûûût: donc on serait comme l'autre muse, à toucher seulement les acteurs
+(01:23:35 AM) Noé: ça semble logique
+(01:23:39 AM) Noé: (mais pas forcément malin)
+(01:23:40 AM) Tût-tûûût: en effet !
+(01:23:42 AM) Noé: (je sais pas)
+(01:24:09 AM) Tût-tûûût: ou alors on dit qu'on peut toucher les acteurs et le décor, mais que les acteurs ne font rien
+(01:24:30 AM) Noé: j'aime bien l'idée de juste les acteurs
+(01:24:34 AM) Noé: les muses inspirent
+(01:24:53 AM) Tût-tûûût: puis ça rend le jeu un peu plus ardu
+(01:24:58 AM) Noé: méta jeu
+(01:24:59 AM) Noé: yay
+(01:26:21 AM) Noé: Bon ça nous fait une base en tout cas.
+(01:26:26 AM) Noé: Ça me parait bien
+(01:26:44 AM) Tût-tûûût: j'aime bien aussi :)
+(01:27:14 AM) Noé: Par contre j'ai encore du mal avec la vue de coté :D
+(01:27:30 AM) Noé: parce que ça veut dire que y'a qu'un degré de liberté ?
+(01:27:50 AM) Tût-tûûût: j'en vois deux, on peut monter et descendre s'il y a des morceaux de décor
+(01:27:54 AM) Noé: tout le monde + objets sur le coté bas de l'écran ?
+(01:28:23 AM) Tût-tûûût: ça fait un peu vide sur le dessus, je suis d'accord
+(01:29:01 AM) Noé: et selon la quantité de gens, ça peut faire foutraque sur le bas aussi
+(01:29:53 AM) Tût-tûûût: on pourrait faire plusieurs étages : la scène en elle-même, un étage au-dessus (balcon, décors en carton-pâte), et le ciel (où les acteurs seraient accrochés avec des espèces de sangles et le décor des morceaux de météo)
+(01:30:06 AM) Tût-tûûût: mais ça fait beaucoup de sprites
+(01:30:10 AM) Tût-tûûût: (hmm, limonade)
+(01:30:34 AM) Noé: j'ai dans l'idée un truc un peu perspective, vu d'en face et un peu haut
+(01:30:54 AM) Noé: histoire d'avoir quand même 2 dimensions (largeur et profondeur de la scène)
+(01:30:56 AM) Tût-tûûût: ça peut être mieux
+(01:31:00 AM) Tût-tûûût: oui
+(01:31:16 AM) Noé: pis on peut facilement zoomer les sprites pour perspective
+(01:31:25 AM) Tût-tûûût: yep
+
+
+
+==========================================
+
+Conclusion du brainstorm de vendredi soir:
+
+Il y a une pièce de théâtre à monter, soit tragédie, soit comédie.
+On joue la muse correspondante.
+Des acteurs des deux camps apparaissent sur scène, il faut tous les convertir de notre côté en les approchant et changeant leur masque.
+Ces acteurs eux-même modifient les objects du décor en la faveur de leur camp.
+La partie est gagnée une fois que tous les acteurs et objects sont convertis.
+
+Mais :
+
+Sur scène est aussi présente l'autre muse, qui fait exactement l'inverse de nous : convertit les acteurs.
+
+Et aussi :
+
+On a une jauge tragédie - comédie, qui est modifiée par la présence d'un acteur/object/muse. Si elle atteint un maximum, quel que soit le côté, c'est l'échec, et Dyonisos nous foudroie.
+
+(La muse opposée étant toujorus présente, il est toujours possible d'équilibrer sa jauge, même lorsque la plupart des acteurs/objets sont de notre camp)
+
+Présentation :
+
+La scène est vue de côté (possible perspective + 2 degrés de liberté). Les acteurs entrent progressivement par les coulisses ou le plafond.
