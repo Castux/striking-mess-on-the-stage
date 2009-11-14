@@ -125,11 +125,10 @@ function Player:draw()
 	end
 end
 
+-- swapdist and swapcost defined in Muse.lua
+
 function Player:tryswap()
 
-	local swapdist = 50
-	local swapcost = 0.4
-	
 	local candidate
 
 	for i,v in ipairs(actors) do

@@ -22,6 +22,10 @@ function Muse:getsprite()
 end
 
 -- Da super AI
+
+swapdist = 50
+swapcost = 0.4
+
 function Muse:update(dt)
 
 	-- Find closest actor to swap
@@ -51,10 +55,26 @@ function Muse:update(dt)
 		local dx = closest.x - self.x
 		local dy = closest.y - self.y
 		
-		--local norm = math.sqrt(dx^2 + dy^2)
 		local norm = candidates[1][2]
 		
-		ax,ay = dx/norm, dy/norm
+		-- Also check if we're close enough to swap him
+		if norm < swapdist then
+			
+			-- consume some energy
+			if foes == 1 then	-- comi->tragi "spends" tragi so augments comi
+				dir = 1
+			else
+				dir = -1	-- tragi->comi "spends" comi so aumgents tragi
+			end
+			
+			player.bar = player.bar + dir * swapcost
+			
+			closest:swap()
+			
+			ax,ay = 0,0
+		else
+			ax,ay = dx/norm, dy/norm
+		end
 	end
 	
 	self:accelerate(ax, ay, dt)

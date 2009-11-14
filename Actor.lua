@@ -48,7 +48,7 @@ function Actor:swap()
 	
 	-- will maybe have fancy animation later
 	
-	self.side = team
+	self.side = self.side == 1 and 2 or 1
 end
 
 function Actor:getsprite()
