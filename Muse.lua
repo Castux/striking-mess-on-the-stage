@@ -11,7 +11,7 @@ function Muse:init(x,y)
 	
 	-- Muses are faster
 	
-	self.maxspeed = 400
+	self.maxspeed = 100
 	
 	return self
 end

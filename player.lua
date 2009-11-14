@@ -9,7 +9,11 @@ function Player:init(x,y)
 	Player.super.init(self,x,y)
 	
 	self.side = team
-		
+	
+	-- Player is even faster than muse
+	
+	self.maxspeed = 300
+	
 	-- tragi-comi bar: -1..1
 	self.bar = 0
 	

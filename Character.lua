@@ -17,8 +17,8 @@ function Character:init(x,y,side)
 	
 	-- Movement params
 	
-	self.accel = 1000
-	self.maxspeed = 150
+	self.accel = 5000
+	self.maxspeed = 100
 
 	self.drag = 0.9
 	
