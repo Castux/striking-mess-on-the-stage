@@ -18,7 +18,6 @@
 
 -- Include other files
 
-require "test"
 require "game"
 
 ------------------------------------------------------------------------
@@ -42,6 +41,12 @@ function sign(x)
 	else
 		return x > 0 and 1 or -1
 	end
+end
+
+-- t is in 0..1
+function lerp(a,b,t)
+	
+	return a + (b-a)*t
 end
 
 answer = 42

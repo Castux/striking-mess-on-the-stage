@@ -21,7 +21,13 @@ function game.init()
 	H = LG.getHeight()
 		
 	-- Decide scene dimensions (screen coords) : any trapezoid
-		-- we'll project later, mmmkay?
+	trap = {
+		x = 200,
+		y = 100,
+		w = 400,
+		W = 700,
+		h = 300
+	}
 	
 	-- Make an entity list (entities are updated and drawn automatically)
 	
@@ -62,6 +68,15 @@ function game.draw()
 	CLR(0,200,100)
 	LG.rectangle(love.draw_fill, 0, 0, LG.getWidth(), LG.getHeight())
 	
+	-- Scene boundaries
+	
+	CLR(0,0,255)
+	
+	for _,v in ipairs{{0,0},{W,0},{W,H},{0,H}} do
+		local x,y = game.game2screen(v[1],v[2])
+		LG.circle(love.draw_fill, x, y, 5)
+	end
+	
 	-- Draw all entities
 	-- (Later we will need to sort objects and characters back to front)
 	for i,v in ipairs(entities) do
@@ -70,4 +85,19 @@ function game.draw()
 		end
 	end
 	
+end
+
+-- Coordinates conversion
+function game.game2screen(x,y)
+	
+	local u,v = x/W, y/H
+	
+	local Y = trap.y + v * trap.h
+	
+	local w = lerp(trap.w, trap.W, v)
+	local X = trap.x + trap.w/2 - w/2 + u * w
+	
+	local scale = w/trap.W
+	
+	return X,Y,scale
 end

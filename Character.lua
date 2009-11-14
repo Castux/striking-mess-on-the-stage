@@ -91,6 +91,8 @@ function Character:speedto(vx,vy,dt)
 end
 
 function Character:draw()
-
-	LG.draw(self.sprite, self.x, self.y)
+	
+	local x,y,s = game.game2screen(self.x, self.y)
+	
+	LG.draw(self.sprite, x, y, 0, s)
 end

@@ -57,11 +57,13 @@ function Actor:draw()
 	
 	Actor.super.draw(self)
 	
+	local x,y,s = game.game2screen(self.x, self.y)
+	
 	if self.targetx and self.targety then
 		CLR(0,0,0)
-		LG.draw(self.targetx .. ":" .. self.targety, self.x, self.y)
-		LG.draw(floor(self.x) .. ":" .. floor(self.y), self.x, self.y + 12)
-		LG.draw(floor(self.vx) .. ":" .. floor(self.vy), self.x, self.y + 2*12)
+		LG.draw(self.targetx .. ":" .. self.targety, x, y)
+		LG.draw(floor(self.x) .. ":" .. floor(self.y), x, y + 12)
+		LG.draw(floor(self.vx) .. ":" .. floor(self.vy), x, y + 2*12)
 		
 		CLR(200,0,0)
 		LG.setLineWidth(5)
