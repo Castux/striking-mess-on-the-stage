@@ -1,6 +1,10 @@
 require "Character.lua"
 
 
+
+local inflspeed = 0.1
+local prox = 100
+
 -- Make Player inherit from Character
 
 Player = class(Character)
@@ -14,6 +18,9 @@ function Player:init(x,y)
 	
 	-- tragi-comi bar: -1..1
 	self.bar = 0
+	
+	-- player is faster
+	self.maxspeed = 400
 	
 	-- set of close actors (we might need to keep the info from 
 	-- frame to frame later. And also for drawing)
@@ -48,17 +55,36 @@ function Player:update(dt)
 	self:accelerate(ax,ay,dt)
 	
 	-- Check proximity with actors
-	local prox = 200
 		
 	for i,v in ipairs(actors) do
 		local dist = self:distance(v)	
 		
 		if dist < prox then
-			self.close[v] = true
+			self.close[v] = true	-- TODO for later animation, need to know new ones and ones who leave
 		else
 			self.close[v] = nil
 		end
 	end
+	
+	-- Apply actors influence
+	for k,_ in pairs(self.close) do
+		
+		local dir
+		
+		if k.side == 1 then	-- tragi
+			dir = -1
+		else
+			dir = 1		-- comi
+		end
+		
+		self.bar = self.bar + dir * inflspeed * dt
+	end
+	
+	-- Check bar boundaries
+	if self.bar > 1 or self.bar < -1 then
+		-- Dyonisos strike!
+	end
+	
 end
 
 function Player:drawbar()

@@ -2,10 +2,7 @@ require "class.lua"
 
 Character = class()
 
-local accel = 1000
-local maxspeed = 300
 
-local drag = 0.9
 
 
 function Character:init(x,y)
@@ -15,6 +12,13 @@ function Character:init(x,y)
 	
 	self.vx = 0
 	self.vy = 0
+	
+	-- Movement params
+	
+	self.accel = 1000
+	self.maxspeed = 150
+
+	self.drag = 0.9
 	
 	-- Default sprite
 	self.sprite = img.bonus1
@@ -56,23 +60,23 @@ function Character:accelerate(ax,ay,dt)
 	-- If no acceleration, deccelerate
 	
 	if ax == 0 and ay == 0 then
-		self.vx = self.vx * drag
-		self.vy = self.vy * drag
+		self.vx = self.vx * self.drag
+		self.vy = self.vy * self.drag
 	
 	-- Otherwise, integrate speed normally
 	
 	else
-		self.vx = self.vx + ax * accel * dt
-		self.vy = self.vy + ay * accel * dt
+		self.vx = self.vx + ax * self.accel * dt
+		self.vy = self.vy + ay * self.accel * dt
 	end
 	
 	-- Speed limit
 	
 	local v = math.sqrt(self.vx^2 + self.vy^2)
 	
-	if v > maxspeed then
-		self.vx = self.vx * maxspeed / v
-		self.vy = self.vy * maxspeed / v
+	if v > self.maxspeed then
+		self.vx = self.vx * self.maxspeed / v
+		self.vy = self.vy * self.maxspeed / v
 	end
 	
 	
@@ -84,8 +88,8 @@ end
 
 function Character:speedto(vx,vy,dt)
 	
-	self.vx = vx * maxspeed
-	self.vy = vy * maxspeed
+	self.vx = vx * self.maxspeed
+	self.vy = vy * self.maxspeed
 	
 	self:integratePosition(dt)
 end

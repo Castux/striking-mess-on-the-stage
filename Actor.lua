@@ -12,6 +12,7 @@ function Actor:init(x,y,side)
 	-- Pick a side
 	self.side = side or rand(2)
 	
+	
 	-- Choose sprite accordingly
 	if self.side == 1 then
 		self.sprite = img.bonus1
