@@ -13,9 +13,6 @@ function Player:init(x,y)
 	-- tragi-comi bar: -1..1
 	self.bar = 0
 	
-	-- player is faster
-	self.maxspeed = 400
-	
 	-- set of close actors (we might need to keep the info from 
 	-- frame to frame later. And also for drawing)
 	

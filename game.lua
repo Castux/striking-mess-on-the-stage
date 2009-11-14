@@ -47,7 +47,7 @@ function game.init()
 	-- Make some actors
 	
 	actors = {}
-	for i = 1,4 do
+	for i = 1,10 do
 		local tmp = Actor()
 		TI(actors, tmp)
 		TI(entities, tmp)

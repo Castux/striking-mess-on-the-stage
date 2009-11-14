@@ -9,6 +9,10 @@ function Muse:init(x,y)
 
 	Muse.super.init(self,x,y,foes)
 	
+	-- Muses are faster
+	
+	self.maxspeed = 400
+	
 	return self
 end
 
