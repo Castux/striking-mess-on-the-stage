@@ -1,4 +1,4 @@
-require "Character"
+require "Character.lua"
 
 
 -- Make Player inherit from Character

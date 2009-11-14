@@ -1,5 +1,5 @@
-require "Player"
-require "Actor"
+require "Player.lua"
+require "Actor.lua"
 
 game = {}
 
