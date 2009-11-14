@@ -35,7 +35,8 @@ function game.init()
 	
 	-- Make a player!
 	
-	TI(entities, Player())	-- register it for updating/drawing
+	player = Player()
+	TI(entities, player)	-- register it for updating/drawing
 	
 	-- Make some actors
 	for i = 1,10 do
@@ -90,6 +91,10 @@ function game.draw()
 			v:draw()
 		end
 	end
+	
+	-- HUD
+	
+	player:drawbar()
 	
 end
 
