@@ -5,6 +5,18 @@ require "Character"
 
 Player = class(Character)
 
+function Player:init(x,y)
+	
+	Player.super.init(self,x,y)
+	
+	-- Specific sprite
+	self.sprite = img.bonus2
+	
+	return self
+end
+
+-- Specific movement: from keyboard
+
 function Player:update(dt)
 	
 	local ax,ay = 0,0

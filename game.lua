@@ -1,6 +1,9 @@
 require "Player"
+require "Actor"
 
 game = {}
+
+
 
 function game.init()
 	
@@ -26,11 +29,12 @@ function game.init()
 	
 	-- Make a player!
 	
-	player = Player()
+	TI(entities, Player())	-- register it for updating/drawing
 	
-	TI(entities, player)	-- register it for updating/drawing
-	
-	
+	-- Make some actors
+	for i = 1,10 do
+		TI(entities, Actor())
+	end
 end
 
 function game.keypressed(k)

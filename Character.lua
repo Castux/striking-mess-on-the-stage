@@ -2,6 +2,12 @@ require "class"
 
 Character = class()
 
+local accel = 1000
+local maxspeed = 300
+
+local drag = 0.9
+
+
 function Character:init(x,y)
 
 	self.x = x or W/2
@@ -10,45 +16,13 @@ function Character:init(x,y)
 	self.vx = 0
 	self.vy = 0
 	
+	-- Default sprite
+	self.sprite = img.bonus1
+	
 	return self
 end
 
-
--- Compute movement, given acceleration (given as -1,0, or 1)
-
-function Character:accelerate(ax,ay,dt)
-	
-	local accel = 1000
-	local maxspeed = 300
-
-	local drag = 0.9
-	
-	-- If no acceleration, deccelerate
-	
-	if ax == 0 and ay == 0 then
-		self.vx = self.vx * drag
-		self.vy = self.vy * drag
-	
-	-- Otherwise, integrate speed normally
-	
-	else
-		self.vx = self.vx + ax * accel * dt
-		self.vy = self.vy + ay * accel * dt
-	end
-	
-	-- Speed limit
-	
-	if self.vx > maxspeed then
-		self.vx = maxspeed
-	elseif self.vx < - maxspeed then
-		self.vx = - maxspeed
-	end
-	
-	if self.vy > maxspeed then
-		self.vy = maxspeed
-	elseif self.vy < - maxspeed then
-		self.vy = - maxspeed
-	end
+function Character:integratePosition(dt)
 	
 	-- Integrate position
 	
@@ -72,12 +46,51 @@ function Character:accelerate(ax,ay,dt)
 		self.y = H - 1
 		self.vy = 0
 	end
+end
+
+-- Compute movement, given acceleration (given as -1,0, or 1)
+
+function Character:accelerate(ax,ay,dt)
+	
+
+	
+	-- If no acceleration, deccelerate
+	
+	if ax == 0 and ay == 0 then
+		self.vx = self.vx * drag
+		self.vy = self.vy * drag
+	
+	-- Otherwise, integrate speed normally
+	
+	else
+		self.vx = self.vx + ax * accel * dt
+		self.vy = self.vy + ay * accel * dt
+	end
+	
+	-- Speed limit
+	
+	local v = math.sqrt(self.vx^2 + self.vy^2)
+	
+	if v > maxspeed then
+		self.vx = self.vx * maxspeed / v
+		self.vy = self.vy * maxspeed / v
+	end
+	
+	self:integratePosition(dt)
 	
 end
 
+-- Set directly speed (in range -1,1)
 
+function Character:speedto(vx,vy,dt)
+	
+	self.vx = vx * maxspeed
+	self.vy = vy * maxspeed
+	
+	self:integratePosition(dt)
+end
 
 function Character:draw()
 
-	LG.draw(img.bonus1, self.x, self.y)
+	LG.draw(self.sprite, self.x, self.y)
 end
