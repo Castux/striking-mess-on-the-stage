@@ -4,20 +4,10 @@ Actor = class(Character)
 
 function Actor:init(x,y,side)
 	
-	Actor.super.init(self,x,y)
+	Actor.super.init(self,x,y,side)
 	
 	self.x = x or rand(W) - 1
 	self.y = y or rand(H) - 1
-	
-	-- Pick a side
-	self.side = side or rand(2)
-	
-	-- Choose sprite accordingly
-	if self.side == 1 then
-		self.sprite = img.bonus1
-	else
-		self.sprite = img.bonus2
-	end
 	
 	-- Pick a random destination
 	self:randtarget()
@@ -59,4 +49,9 @@ function Actor:swap()
 	-- will maybe have fancy animation later
 	
 	self.side = team
+end
+
+function Actor:getsprite()
+	
+	return self.side == 1 and img.tragi or img.comi
 end

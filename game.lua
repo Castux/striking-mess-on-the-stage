@@ -1,5 +1,6 @@
 require "Player.lua"
 require "Actor.lua"
+require "Muse.lua"
 
 game = {}
 
@@ -37,6 +38,11 @@ function game.init()
 	
 	player = Player()
 	TI(entities, player)	-- register it for updating/drawing
+	
+	
+	-- And ennemy muse
+	muse = Muse()
+	TI(entities, muse)
 	
 	-- Make some actors
 	

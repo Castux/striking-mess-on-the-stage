@@ -1,11 +1,8 @@
-require "Character.lua"
+require "Muse.lua"
 
+-- Make Player inherit from Muse and overload its default behavior (AI)
 
-
-
--- Make Player inherit from Character
-
-Player = class(Character)
+Player = class(Muse)
 
 function Player:init(x,y)
 	
