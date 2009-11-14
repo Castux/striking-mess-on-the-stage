@@ -19,25 +19,28 @@ function Actor:init(x,y,side)
 		self.sprite = img.bonus2
 	end
 	
+	-- Pick a random destination
+	self:randtarget()
+	
 	return self
+end
+
+function Actor:randtarget()
+
+	local margin = 10
+
+	self.targetx = rand(margin, W-margin)
+	self.targety = rand(margin, H-margin)
 end
 
 function Actor:update(dt)
 	
 	local epsi = 5
-	
-	-- For now, just make them move randomly
-	
-	-- If no target, make one
-	self.targetx = self.targetx or rand(W) - 1
-	self.targety = self.targety or rand(H) - 1
-	
-	-- If reached target, remove it
+
+	-- If reached target, make new one
 	if self.x - self.targetx < epsi and self.y - self.targety < epsi then
-		self.targetx = nil
-		self.targety = nil
 		
-		return
+		self:randtarget()
 	end
 	
 	-- Get direction to target
@@ -47,4 +50,21 @@ function Actor:update(dt)
 	local norm = math.sqrt(dx^2 + dy^2)
 	--self:speedto(dx/norm, dy/norm, dt)
 	self:accelerate(dx/norm, dy/norm, dt)
+
+end
+
+function Actor:draw()
+	
+	Actor.super.draw(self)
+	
+	if self.targetx and self.targety then
+		CLR(0,0,0)
+		LG.draw(self.targetx .. ":" .. self.targety, self.x, self.y)
+		LG.draw(floor(self.x) .. ":" .. floor(self.y), self.x, self.y + 12)
+		LG.draw(floor(self.vx) .. ":" .. floor(self.vy), self.x, self.y + 2*12)
+		
+		CLR(200,0,0)
+		LG.setLineWidth(5)
+		LG.line(self.x, self.y, self.targetx, self.targety)
+	end
 end

@@ -46,13 +46,12 @@ function Character:integratePosition(dt)
 		self.y = H - 1
 		self.vy = 0
 	end
+	
 end
 
 -- Compute movement, given acceleration (given as -1,0, or 1)
 
 function Character:accelerate(ax,ay,dt)
-	
-
 	
 	-- If no acceleration, deccelerate
 	
@@ -75,6 +74,7 @@ function Character:accelerate(ax,ay,dt)
 		self.vx = self.vx * maxspeed / v
 		self.vy = self.vy * maxspeed / v
 	end
+	
 	
 	self:integratePosition(dt)
 	

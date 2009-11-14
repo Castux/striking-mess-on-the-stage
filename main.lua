@@ -121,6 +121,7 @@ autoload("mus", LA.newMusic)
 --[[ Some things to take care of ]]
 
 math.randomseed(os.time())
+LG.setFont(love.default_font)
 
 --[[ Set initial game state ]]
 
