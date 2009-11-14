@@ -13,7 +13,12 @@ function Player:init(x,y)
 	self.sprite = img.bonus2
 	
 	-- tragi-comi bar: -1..1
-	self.bar = -0.5
+	self.bar = 0
+	
+	-- set of close actors (we might need to keep the info from 
+	-- frame to frame later. And also for drawing)
+	
+	self.close = {}
 	
 	return self
 end
@@ -41,6 +46,19 @@ function Player:update(dt)
 	
 	-- Move in consequence
 	self:accelerate(ax,ay,dt)
+	
+	-- Check proximity with actors
+	local prox = 200
+		
+	for i,v in ipairs(actors) do
+		local dist = self:distance(v)	
+		
+		if dist < prox then
+			self.close[v] = true
+		else
+			self.close[v] = nil
+		end
+	end
 end
 
 function Player:drawbar()
@@ -63,4 +81,21 @@ function Player:drawbar()
 		LG.rectangle(love.draw_fill, x, y + h/2 + self.bar*h/2, w, -self.bar*h/2)
 	end
 	
+end
+
+function Player:draw()
+	
+	Player.super.draw(self)
+	
+	local x,y = game.game2screen(self.x, self.y)
+	
+	-- Make lines to close dudes
+	for k,_ in pairs(self.close) do
+		
+		local x2,y2 = game.game2screen(k.x, k.y)
+		
+		CLR(0,0,0)
+		LG.setLineWidth(4)
+		LG.line(x,y,x2,y2)
+	end
 end

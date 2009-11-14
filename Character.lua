@@ -96,3 +96,9 @@ function Character:draw()
 	
 	LG.draw(self.sprite, x, y, 0, s)
 end
+
+
+function Character:distance(b)
+	
+	return math.sqrt((self.x - b.x)^2 + (self.y - b.y)^2)
+end

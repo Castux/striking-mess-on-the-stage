@@ -39,8 +39,12 @@ function game.init()
 	TI(entities, player)	-- register it for updating/drawing
 	
 	-- Make some actors
+	
+	actors = {}
 	for i = 1,10 do
-		TI(entities, Actor())
+		local tmp = Actor()
+		TI(actors, tmp)
+		TI(entities, tmp)
 	end
 end
 
