@@ -5,7 +5,7 @@ Character = class()
 
 
 
-function Character:init(x,y)
+function Character:init(x,y,side)
 
 	self.x = x or W/2
 	self.y = y or H/2
@@ -13,12 +13,12 @@ function Character:init(x,y)
 	self.vx = 0
 	self.vy = 0
 	
-	self.side = nil
+	self.side = side or rand(2)
 	
 	-- Movement params
 	
-	self.accel = 1000
-	self.maxspeed = 150
+	self.accel = 5000
+	self.maxspeed = 100
 
 	self.drag = 0.9
 	
@@ -96,10 +96,8 @@ end
 function Character:draw()
 	
 	local x,y,s = game.game2screen(self.x, self.y)
-	
-	local spr = self.side == 1 and img.tragi or img.comi
-	
-	LG.draw(spr, x, y, 0, s)
+		
+	LG.draw(self:getsprite(), x, y, 0, s)
 end
 
 

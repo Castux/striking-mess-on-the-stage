@@ -1,5 +1,6 @@
 require "Player.lua"
 require "Actor.lua"
+require "Muse.lua"
 
 game = {}
 
@@ -38,10 +39,15 @@ function game.init()
 	player = Player()
 	TI(entities, player)	-- register it for updating/drawing
 	
+	
+	-- And ennemy muse
+	muse = Muse()
+	TI(entities, muse)
+	
 	-- Make some actors
 	
 	actors = {}
-	for i = 1,4 do
+	for i = 1,10 do
 		local tmp = Actor()
 		TI(actors, tmp)
 		TI(entities, tmp)
@@ -54,7 +60,10 @@ function game.keypressed(k)
 		love.system.exit()
 	elseif k == love.key_space then
 		player:tryswap()
+	elseif k==love.key_b then
+		actors[1]:says("truc !") -- quite dangerous to say something for the moment
 	end
+	
 	
 end
 
