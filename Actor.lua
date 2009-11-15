@@ -1,4 +1,4 @@
-﻿require "Character.lua"
+require "Character.lua"
 
 Actor = class(Character)
 
