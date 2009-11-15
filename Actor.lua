@@ -15,9 +15,7 @@ function Actor:init(x,y,side)
 	-- Ce qu'il dit
 	self.parole = ""
 	self.tps_parole = 0
-	
-	self.count = 0
-	
+		
 	return self
 end
 
@@ -63,7 +61,6 @@ function Actor:update(dt)
 		
 		if self.targetobj and self.targetobj.side ~= self.side then
 			self.targetobj:swap()
-			self.count = self.count + 1
 		end
 		
 		self:randtarget()
@@ -131,15 +128,5 @@ function Actor:draw()
 	
 	-- On dessine l'acteur par-dessus la bulle
 	Actor.super.draw(self)
-	
-	-- DEBUG: target obj
-	if self.targetobj then
-		local x2,y2 = game.game2screen(self.targetx, self.targety)
-		
-		CLR(100,100,0)
-		LG.line(x,y,x2,y2)
-	end
-	
-	CLR(0,0,0)
-	LG.draw(self.count, x,y)
+
 end

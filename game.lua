@@ -3,7 +3,7 @@ require "Actor.lua"
 require "Muse.lua"
 require "Theplay.lua"
 require "Object.lua"
-
+require "Dionysos.lua"
 
 game = {}
 
@@ -65,10 +65,17 @@ function game.init()
 		TI(entities, tmp)
 	end
 	
+	-- Wrong objects
+	game.badobjs = 0	-- set at each update
 
 	-- Make a play
 	
 	theplay = Theplay()
+	
+	-- Game state
+	game.state = 'NORMAL'
+		-- 'ENDGAME'
+		
 end
 
 function game.keypressed(k)
@@ -77,14 +84,17 @@ function game.keypressed(k)
 		love.system.exit()
 	elseif k == love.key_space then
 		player:tryswap()
-	elseif k==love.key_b then
-		actors[1]:says("truc !") -- quite dangerous to say something for the moment
 	end
 	
 	
 end
 
 function game.update(dt)
+	
+	if game.state == 'ENDGAME' then
+		game.updateend(dt)
+		return
+	end
 	
 	-- Update all entities
 	for i,v in ipairs(entities) do
@@ -96,6 +106,32 @@ function game.update(dt)
 	-- Update the play
 	theplay:update(dt)
 	
+	-- Count the remaining objects to swap
+	for i,v in ipairs(objects) do
+		if v.side == foes then
+			game.badobjs = game.badobjs + 1
+		end
+	end
+	
+	-- Check da win
+	if game.badobjs == 0 or LK(love.key_b) then
+		
+		game.state = 'ENDGAME'
+		
+		-- Create D, and direct it at the other muse
+		dionysos = Dionysos(muse)
+	end
+end
+
+function game.updateend(dt)
+	
+	local terminate = dionysos:update(dt)
+	
+	-- check if he's done striking, and go back to title
+	
+	if terminate then
+		love.system.restart()
+	end
 end
 
 function game.draw()
@@ -130,6 +166,11 @@ function game.draw()
 	-- HUD
 	
 	player:drawbar()
+	
+	-- Dionysos
+	if game.state == 'ENDGAME' then
+		dionysos:draw()
+	end
 	
 end
 
