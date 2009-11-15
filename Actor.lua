@@ -46,8 +46,8 @@ function Actor:update(dt)
 	self:accelerate(dx/norm, dy/norm, dt)
 
 	-- Pour que l'acteur se taise au bout d'un moment
-	self.tps_parole = self.tps_parole - 1
-	-- il fait ça à chaque dt : problème ? Ajout d'un test ?
+	self.tps_parole = self.tps_parole - dt
+
 
 end
 
@@ -70,7 +70,8 @@ function Actor:says(truc)
 	-- on affiche le truc au-dessus (ou à coté) de sa tete, dans une bulle par ex.
 
 	self.parole = truc
-	self.tps_parole = 200 -- possible de le passer en argument selon la longueur des répliques
+
+	self.tps_parole = 2 -- possible de le passer en argument selon la longueur des répliques
 
 end
 
@@ -79,9 +80,9 @@ function Actor:draw()
 	local x,y,s = game.game2screen(self.x, self.y)
 	
 	if self.side == 1 then
-	CLR(0,0,255,80) -- tragi ?
+		CLR(0,0,255,80) -- tragi ?
 	elseif self.side == 2 then
-	CLR(255,0,240,80) -- comi ?
+		CLR(255,0,240,80) -- comi ?
 	end
 	
 	-- on n'affiche quelque chose que s'il a quelque chose à dire

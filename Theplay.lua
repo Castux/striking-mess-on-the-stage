@@ -9,7 +9,7 @@ Theplay = class()
 
 function Theplay:init()
 
-	self.cycle = 100; -- une nouvelle réplique tous les xx
+	self.cycle = 5 -- une nouvelle réplique tous les xx
 	
 	self.thescript = {} -- À afficher à la fin (ou pendant ?)
 	
@@ -18,7 +18,7 @@ end
 
 function Theplay:update(dt)
 	
-	if self.cycle == 0 then
+	if self.cycle < 0 then
 	
 		-- On choisit un acteur au hasard
 		local i = rand(nb_actors)
@@ -38,13 +38,13 @@ function Theplay:update(dt)
 		
 		-- L'acteur dit sa réplique
 		actors[i]:says(replique)
-		self.cycle = 300
+		self.cycle = 5
 		
 		-- On stocke la réplique dans le script de la pièce
 		TI(self.thescript,{replique,actors[i].side})
 	
-	else self.cycle = self.cycle - 1
-	
+	else
+		self.cycle = self.cycle - dt
 	end
 	
 end
