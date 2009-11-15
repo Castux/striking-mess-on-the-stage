@@ -46,7 +46,7 @@ function Actor:update(dt)
 	self:accelerate(dx/norm, dy/norm, dt)
 
 	-- Pour que l'acteur se taise au bout d'un moment
-	self.tps_parole = self.tps_parole - 1
+	self.tps_parole = self.tps_parole - dt
 	-- il fait ça à chaque dt : problème ? Ajout d'un test ?
 
 end
@@ -70,7 +70,7 @@ function Actor:says(truc)
 	-- on affiche le truc au-dessus (ou à coté) de sa tete, dans une bulle par ex.
 
 	self.parole = truc
-	self.tps_parole = 200 -- possible de le passer en argument selon la longueur des répliques
+	self.tps_parole = 2 -- possible de le passer en argument selon la longueur des répliques
 
 end
 
