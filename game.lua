@@ -1,6 +1,7 @@
 require "Player.lua"
 require "Actor.lua"
 require "Muse.lua"
+require "Theplay.lua"
 
 game = {}
 
@@ -46,12 +47,17 @@ function game.init()
 	
 	-- Make some actors
 	
+	nb_actors = 10
 	actors = {}
-	for i = 1,10 do
+	for i = 1,nb_actors do
 		local tmp = Actor()
 		TI(actors, tmp)
 		TI(entities, tmp)
 	end
+	
+	-- Make a play
+	
+	theplay = Theplay()
 end
 
 function game.keypressed(k)

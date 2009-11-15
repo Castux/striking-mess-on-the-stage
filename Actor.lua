@@ -14,6 +14,7 @@ function Actor:init(x,y,side)
 	
 	-- Ce qu'il dit
 	self.parole = ""
+	self.tps_parole = 0
 	
 	return self
 end
@@ -44,6 +45,10 @@ function Actor:update(dt)
 	--self:speedto(dx/norm, dy/norm, dt)
 	self:accelerate(dx/norm, dy/norm, dt)
 
+	-- Pour que l'acteur se taise au bout d'un moment
+	self.tps_parole = self.tps_parole - 1
+	-- il fait a ˆ chaque dt : problme ? Ajout d'un test ?
+
 end
 
 
@@ -63,19 +68,24 @@ function Actor:says(truc)
 
 	-- pour quand l'acteur dit un truc
 	-- on affiche le truc au-dessus (ou ˆ cotŽ) de sa tete, dans une bulle par ex.
-	self.parole = truc
 
-	-- il faut surement appeler un draw(truc,self.x,self.y) dans la methode draw()
-	-- de l'acteur, a priori en fait.
+	self.parole = truc
+	self.tps_parole = 200
+
 end
 
 function Actor:draw()
 	
 	local x,y,s = game.game2screen(self.x, self.y)
 	
+	if self.side == 1 then
+	CLR(0,0,255,80) -- tragi ?
+	elseif self.side == 2 then
+	CLR(255,0,240,80) -- comi ?
+	end
+	
 	-- on n'affiche quelque chose que s'il a quelque chose ˆ dire
-	if self.parole ~= "" then
-		CLR(255,255,255) -- la couleur pourrait/devrait changer selon le ton
+	if self.parole ~= "" and self.tps_parole > 0 then
 		LG.rectangle(0,x - 5, y - 75, 110, 43)
 		CLR(0,0,0)
 		LG.drawf(self.parole,x,y - 65,100,2)
