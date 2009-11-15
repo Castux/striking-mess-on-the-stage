@@ -33,3 +33,8 @@ function Object:draw()
 	
 	LG.draw(spr, x, y - spr:getHeight()/2*s, 0, s)
 end
+
+function Object:swap()
+	
+	self.side = self.side == 1 and 2 or 1
+end

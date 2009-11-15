@@ -16,38 +16,71 @@ function Actor:init(x,y,side)
 	self.parole = ""
 	self.tps_parole = 0
 	
+	self.count = 0
+	
 	return self
 end
 
 function Actor:randtarget()
 
 	local margin = 10
+	
+	-- Make list of candidate objects
+	local list = {}
+	
+	for i,v in ipairs(objects) do
+		if v.side ~= self.side then
+			TI(list, v)
+		end
+	end
+	
+	-- If there are not, walk to random location
+	if #list == 0 then
 
-	self.targetx = rand(margin, W-margin)
-	self.targety = rand(margin, H-margin)
+		self.targetx = rand(margin, W-margin)
+		self.targety = rand(margin, H-margin)
+		self.targetobj = nil
+	
+	-- If there are, pick a random one and walk to it
+	else
+		local obj = list[rand(#list)]
+		
+		self.targetx = obj.x
+		self.targety = obj.y
+		self.targetobj = obj
+	end
+
+
 end
 
 function Actor:update(dt)
 	
 	local epsi = 5
 
-	-- If reached target, make new one
-	if self.x - self.targetx < epsi and self.y - self.targety < epsi then
+	-- If reached target, try to swap object (if it's still swapable),
+	-- and get new one
+	if (self.x - self.targetx)^2 + (self.y - self.targety)^2 < epsi^2 then
+		
+		if self.targetobj and self.targetobj.side ~= self.side then
+			self.targetobj:swap()
+			self.count = self.count + 1
+		end
 		
 		self:randtarget()
+	else
+	
+		-- Get direction to target
+		local dx = self.targetx - self.x
+		local dy = self.targety - self.y
+		
+		local norm = math.sqrt(dx^2 + dy^2)
+		--self:speedto(dx/norm, dy/norm, dt)
+		self:accelerate(dx/norm, dy/norm, dt)
+	
 	end
 	
-	-- Get direction to target
-	local dx = self.targetx - self.x
-	local dy = self.targety - self.y
-	
-	local norm = math.sqrt(dx^2 + dy^2)
-	--self:speedto(dx/norm, dy/norm, dt)
-	self:accelerate(dx/norm, dy/norm, dt)
-
 	-- Pour que l'acteur se taise au bout d'un moment
 	self.tps_parole = self.tps_parole - dt
-
 
 end
 
@@ -57,6 +90,9 @@ function Actor:swap()
 	-- will maybe have fancy animation later
 	
 	self.side = self.side == 1 and 2 or 1
+	
+	-- get a new target if we change side
+	self:randtarget()
 end
 
 function Actor:getsprite()
@@ -95,4 +131,15 @@ function Actor:draw()
 	
 	-- On dessine l'acteur par-dessus la bulle
 	Actor.super.draw(self)
+	
+	-- DEBUG: target obj
+	if self.targetobj then
+		local x2,y2 = game.game2screen(self.targetx, self.targety)
+		
+		CLR(100,100,0)
+		LG.line(x,y,x2,y2)
+	end
+	
+	CLR(0,0,0)
+	LG.draw(self.count, x,y)
 end

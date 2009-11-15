@@ -47,16 +47,6 @@ function game.init()
 	muse = Muse()
 	TI(entities, muse)
 	
-	-- Make some actors
-	
-	nb_actors = 10
-	actors = {}
-	for i = 1,nb_actors do
-		local tmp = Actor()
-		TI(actors, tmp)
-		TI(entities, tmp)
-	end
-	
 	-- Objects
 	nb_objects = 10
 	objects = {}
@@ -66,6 +56,16 @@ function game.init()
 		TI(entities, tmp)
 	end
 	
+	-- Make some actors
+	nb_actors = 2
+	actors = {}
+	for i = 1,nb_actors do
+		local tmp = Actor()
+		TI(actors, tmp)
+		TI(entities, tmp)
+	end
+	
+
 	-- Make a play
 	
 	theplay = Theplay()
