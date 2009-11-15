@@ -1,4 +1,4 @@
-require "Character.lua"
+ï»¿require "Character.lua"
 
 Actor = class(Character)
 
@@ -47,7 +47,7 @@ function Actor:update(dt)
 
 	-- Pour que l'acteur se taise au bout d'un moment
 	self.tps_parole = self.tps_parole - 1
-	-- il fait a ˆ chaque dt : problme ? Ajout d'un test ?
+	-- il fait Ã§a Ã  chaque dt : problÃ¨me ? Ajout d'un test ?
 
 end
 
@@ -67,10 +67,10 @@ end
 function Actor:says(truc)
 
 	-- pour quand l'acteur dit un truc
-	-- on affiche le truc au-dessus (ou ˆ cotŽ) de sa tete, dans une bulle par ex.
+	-- on affiche le truc au-dessus (ou Ã  cotÃ©) de sa tete, dans une bulle par ex.
 
 	self.parole = truc
-	self.tps_parole = 200 -- possible de le passer en argument selon la longueur des rŽpliques
+	self.tps_parole = 200 -- possible de le passer en argument selon la longueur des rÃ©pliques
 
 end
 
@@ -84,7 +84,7 @@ function Actor:draw()
 	CLR(255,0,240,80) -- comi ?
 	end
 	
-	-- on n'affiche quelque chose que s'il a quelque chose ˆ dire
+	-- on n'affiche quelque chose que s'il a quelque chose Ã  dire
 	if self.parole ~= "" and self.tps_parole > 0 then
 		LG.rectangle(0,x - 5, y - 75, 110, 43)
 		CLR(0,0,0)
