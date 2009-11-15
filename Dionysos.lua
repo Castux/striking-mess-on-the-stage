@@ -45,7 +45,8 @@ function Dionysos:draw()
 	
 	if self.strike then
 		CLR(0,255,255)
-		LG.line(x,y,self.target.x, self.target.y)
+		local x2,y2,s = game.game2screen(self.target.x, self.target.y)
+		LG.line(x,y,x2,y2 - self.target:getsprite():getHeight()*s/2)
 	
 		-- fade screen
 		CLR(0,0,0, (self.fadeinit - self.fadecount)/self.fadeinit * 255)

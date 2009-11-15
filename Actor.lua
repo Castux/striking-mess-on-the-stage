@@ -28,7 +28,7 @@ function Actor:randtarget()
 	
 	for i,v in ipairs(objects) do
 		if v.side ~= self.side then
-			TI(list, v)
+			TI(list, {v,self:distance(v)})
 		end
 	end
 	
@@ -39,15 +39,26 @@ function Actor:randtarget()
 		self.targety = rand(margin, H-margin)
 		self.targetobj = nil
 	
-	-- If there are, pick a random one and walk to it
+	
+	--If there are, with half probability, pick the closest or a random one
 	else
-		local obj = list[rand(#list)]
+		local obj
+		
+		if rand() < 0.5 then
+			table.sort(list, function(a,b)
+				return a[2] < b[2]
+			end)
+			
+			obj = list[1][1]
+		else
+			obj = list[rand(#list)][1]
+		end
 		
 		self.targetx = obj.x
 		self.targety = obj.y
 		self.targetobj = obj
 	end
-
+	
 
 end
 

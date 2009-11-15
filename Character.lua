@@ -7,8 +7,8 @@ Character = class()
 
 function Character:init(x,y,side)
 
-	self.x = x or W/2
-	self.y = y or H/2
+	self.x = x or (rand(W) - 1)
+	self.y = y or (rand(H) - 1)
 	
 	self.vx = 0
 	self.vy = 0

@@ -18,6 +18,7 @@
 
 -- Include other files
 
+require "menu.lua"
 require "game.lua"
 
 ------------------------------------------------------------------------
@@ -130,5 +131,5 @@ LG.setFont(love.default_font)
 
 --[[ Set initial game state ]]
 
-setGameState(game)
+setGameState(menu)
 

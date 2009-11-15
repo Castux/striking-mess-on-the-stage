@@ -107,6 +107,7 @@ function game.update(dt)
 	theplay:update(dt)
 	
 	-- Count the remaining objects to swap
+	game.badobjs = 0
 	for i,v in ipairs(objects) do
 		if v.side == foes then
 			game.badobjs = game.badobjs + 1
@@ -166,6 +167,8 @@ function game.draw()
 	-- HUD
 	
 	player:drawbar()
+	LG.draw(game.badobjs, 40, 20)
+	
 	
 	-- Dionysos
 	if game.state == 'ENDGAME' then
