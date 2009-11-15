@@ -204,6 +204,7 @@ end
 function game.drawmeter()
 	
 	local x,y = 20,20
+	local shift = 70	-- height of the masks at top and bottom of the scale
 	
 	local ratio = game.badobjs / nb_objects
 	
@@ -212,5 +213,5 @@ function game.drawmeter()
 	end
 	
 	LG.draw(img.scale, x + img.scale:getWidth()/2, y + img.scale:getHeight()/2)
-	LG.draw(img.marker, x + 50, y + img.scale:getHeight()*ratio)
+	LG.draw(img.marker, x + 50, y + shift + (img.scale:getHeight() - 2*shift)*ratio)
 end
