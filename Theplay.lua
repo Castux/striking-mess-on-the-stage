@@ -1,4 +1,5 @@
 require "class.lua"
+require "thescripts.lua"
 
 Theplay = class()
 -- The term "play" can refer to both the written works of playwrights
@@ -8,28 +9,43 @@ Theplay = class()
 
 function Theplay:init()
 
-	-- No idea of what I'm going to put here.
+	self.cycle = 100; -- une nouvelle réplique tous les xx
+	
+	self.thescript = {} -- À afficher à la fin (ou pendant ?)
 	
 	return self -- Mandatory
 end
 
 function Theplay:update(dt)
 	
-	-- On choisit un acteur au hasard
-	local i = rand(0, nb_actors - 1)
-	local parole = ""
+	if self.cycle == 0 then
 	
-	--if actors[i].side == 1 then
-	--parole = "Tragi"
-	--elseif actors[i].side == 2 then
-	--parole = "Comi"
-	--end
+		-- On choisit un acteur au hasard
+		local i = rand(nb_actors)
+		
+		-- choix de la réplique
+		local replique = ""
+		
+		if actors[i].side == 1 then
+			local j = rand(lg_tragiscript)
+			replique = tragiscript[j]
+			
+		elseif actors[i].side == 2 then
+			local j = rand(lg_comiscript)
+			replique = comiscript[j]
+			
+		end
+		
+		-- L'acteur dit sa réplique
+		actors[i]:says(replique)
+		self.cycle = 300
+		
+		-- On stocke la réplique dans le script de la pièce
+		TI(self.thescript,{replique,actors[i].side})
 	
-	-- ...puis une réplique de son camp
-	-- Stocker la réplique dans le texte de la pièce
-	-- et la faire dire à l'acteur
-	actors[4]:says("Coucou")
-
+	else self.cycle = self.cycle - 1
+	
+	end
 	
 end
 

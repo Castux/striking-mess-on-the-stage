@@ -82,6 +82,9 @@ function game.update(dt)
 		end
 	end
 	
+	-- Update the play
+	theplay:update(dt)
+	
 end
 
 function game.draw()

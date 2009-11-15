@@ -70,7 +70,7 @@ function Actor:says(truc)
 	-- on affiche le truc au-dessus (ou à coté) de sa tete, dans une bulle par ex.
 
 	self.parole = truc
-	self.tps_parole = 200
+	self.tps_parole = 200 -- possible de le passer en argument selon la longueur des répliques
 
 end
 
@@ -91,8 +91,6 @@ function Actor:draw()
 		LG.drawf(self.parole,x,y - 65,100,2)
 	end
 	
-	-- maintenant il faut encore qu'il se taise une fois qu'il a dit
-	-- ce qu'il faut. Va falloir ajouter une petite temporisation.
 	
 	-- On dessine l'acteur par-dessus la bulle
 	Actor.super.draw(self)
