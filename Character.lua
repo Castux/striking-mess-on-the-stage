@@ -96,8 +96,9 @@ end
 function Character:draw()
 	
 	local x,y,s = game.game2screen(self.x, self.y)
-		
-	LG.draw(self:getsprite(), x, y, 0, s)
+	local spr = self:getsprite()
+	
+	LG.draw(spr, x, y - spr:getHeight()/2*s, 0, s)
 end
 
 

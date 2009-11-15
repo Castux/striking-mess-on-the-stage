@@ -2,6 +2,8 @@ require "Player.lua"
 require "Actor.lua"
 require "Muse.lua"
 require "Theplay.lua"
+require "Object.lua"
+
 
 game = {}
 
@@ -52,6 +54,15 @@ function game.init()
 	for i = 1,nb_actors do
 		local tmp = Actor()
 		TI(actors, tmp)
+		TI(entities, tmp)
+	end
+	
+	-- Objects
+	nb_objects = 10
+	objects = {}
+	for i = 1,nb_objects do
+		local tmp = Object()
+		TI(objects, tmp)
 		TI(entities, tmp)
 	end
 	
