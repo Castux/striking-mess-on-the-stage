@@ -174,8 +174,9 @@ function game.draw()
 	
 	-- HUD
 	
-	player:drawbar()
-	LG.draw(game.badobjs, 40, 20)
+	-- player:drawbar() --[[ FORGET THE PLAYER POWER? ]]
+	
+	game.drawmeter()
 	
 	
 	-- Dionysos
@@ -198,4 +199,18 @@ function game.game2screen(x,y)
 	local scale = w/trap.W
 	
 	return X,Y,scale
+end
+
+function game.drawmeter()
+	
+	local x,y = 20,20
+	
+	local ratio = game.badobjs / nb_objects
+	
+	if team == 1 then
+		ratio = 1 - ratio
+	end
+	
+	LG.draw(img.scale, x + img.scale:getWidth()/2, y + img.scale:getHeight()/2)
+	LG.draw(img.marker, x + 50, y + img.scale:getHeight()*ratio)
 end

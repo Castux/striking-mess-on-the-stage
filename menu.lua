@@ -116,7 +116,7 @@ function menu.draw()
 	-- Difficulty selection
 
 	if button(1, 200, 300, img.comi) then
-		setGameState(game, 2, 10)
+		setGameState(game, 3, 10)
 	end
 	
 	if button(2, 300, 300, img.comi) then
