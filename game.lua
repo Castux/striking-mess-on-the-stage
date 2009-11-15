@@ -9,7 +9,7 @@ game = {}
 
 
 
-function game.init()
+function game.init(nactors, nobjects)
 	
 	-- Pick a random side to be in
 	
@@ -48,7 +48,7 @@ function game.init()
 	TI(entities, muse)
 	
 	-- Objects
-	nb_objects = 10
+	nb_objects = nobjects
 	objects = {}
 	for i = 1,nb_objects do
 		local tmp = Object()
@@ -57,7 +57,7 @@ function game.init()
 	end
 	
 	-- Make some actors
-	nb_actors = 2
+	nb_actors = nactors
 	actors = {}
 	for i = 1,nb_actors do
 		local tmp = Actor()
@@ -121,6 +121,14 @@ function game.update(dt)
 		
 		-- Create D, and direct it at the other muse
 		dionysos = Dionysos(muse)
+	
+	-- Check da lose
+	elseif game.badobjs == nb_objects then
+		
+		game.state = 'ENDGAME'
+		
+		-- Create D, and direct it at the player musee
+		dionysos = Dionysos(player)
 	end
 end
 

@@ -115,16 +115,16 @@ function menu.draw()
 	
 	-- Difficulty selection
 
-	if button(1, 300, 300, img.comi) then
-		setGameState(game)
+	if button(1, 200, 300, img.comi) then
+		setGameState(game, 2, 10)
 	end
 	
-	if button(2, 200, 300, img.comi) then
-		setGameState(game)
+	if button(2, 300, 300, img.comi) then
+		setGameState(game, 6, 15)
 	end
 
 	if button(3, 400, 300, img.comi) then
-		setGameState(game)
+		setGameState(game, 10, 20)
 	end
 
 	

@@ -56,7 +56,7 @@ answer = 42
 --[[ Game state system ]]-----------------------------------------------
 ------------------------------------------------------------------------
 
-function setGameState(state)
+function setGameState(state, ...)
 
 	--load = state.load 
 	--not sure we should do that. let's have a init() instead,
@@ -72,7 +72,7 @@ function setGameState(state)
 	
 	init = state.init or no_op
 
-	init()
+	init(...)
 end
 
 function no_op() end
