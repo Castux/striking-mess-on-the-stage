@@ -79,9 +79,9 @@ function Actor:draw()
 	local x,y,s = game.game2screen(self.x, self.y)
 	
 	if self.side == 1 then
-	CLR(0,0,255,80) -- tragi ?
+		CLR(0,0,255,80) -- tragi ?
 	elseif self.side == 2 then
-	CLR(255,0,240,80) -- comi ?
+		CLR(255,0,240,80) -- comi ?
 	end
 	
 	-- on n'affiche quelque chose que s'il a quelque chose ˆ dire

@@ -43,8 +43,8 @@ function Theplay:update(dt)
 		-- On stocke la réplique dans le script de la pièce
 		TI(self.thescript,{replique,actors[i].side})
 	
-	else self.cycle = self.cycle - 1
-	
+	else
+		self.cycle = self.cycle - 1
 	end
 	
 end
