@@ -77,7 +77,7 @@ function game.init(nactors, nobjects)
 		-- 'ENDGAME'
 	
 	-- Start the Muse-ic!
-	local tracks = {"Melpomene","Melpomene"}
+	local tracks = {"Melpomene","Thalie"}
 	LA.play(mus[tracks[team]])
 		
 end
