@@ -1,5 +1,6 @@
 --[[
-	Copyright © 2009 Noé Falzon
+	Striking Mess On The Stage (Because Of The Jealousy Of A Cute Divine Girl)
+	Copyright © 2009 Agnès Haasser & Noé Falzon
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
