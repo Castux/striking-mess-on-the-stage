@@ -52,9 +52,11 @@ function Dionysos:draw()
 	LG.setColorMode(love.color_normal)
 	
 	if self.strike then
-
-		-- kaboom
+		local sc = 1 + rand()*0.1
+		local ang = (rand() - 0.5)*10
 		
+		-- kaboom
+		LG.draw(img.kaboum, x, y - self.target:getsprite():getHeight()/2*s, ang, s*sc*0.3)
 
 		-- fade screen
 		CLR(0,0,0, (self.fadeinit - self.fadecount)/self.fadeinit * 255)
