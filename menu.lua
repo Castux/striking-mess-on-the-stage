@@ -133,16 +133,17 @@ function menu.draw()
 	LG.rectangle(love.draw_fill,0,0,LG.getWidth()-1,LG.getHeight()-1)
 	
 	-- Difficulty selection
+	local H = floor(LG.getHeight() - img.niveau3:getHeight())/2
 
-	if button(1, 200, 300, img.comi) then
+	if button(1, 200, H, img.niveau1) then
 		setGameState(game, 3, 10)
 	end
 	
-	if button(2, 300, 300, img.comi) then
+	if button(2, 300, H, img.niveau2) then
 		setGameState(game, 6, 15)
 	end
 
-	if button(3, 400, 300, img.comi) then
+	if button(3, 400, H, img.niveau3) then
 		setGameState(game, 10, 20)
 	end
 

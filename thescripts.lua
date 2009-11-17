@@ -22,7 +22,11 @@ tragiscript = {
 	"He's dead.",
 	"No.",
 	"Yes.",
-	"I don't know..."
+	"I don't know...",
+	"O rage! O despair! O inimical old age!",
+	"O Romeo, Romeo, wherefore art thou Romeo?",
+	"Never was a story of more woe...",
+	"Than this of Juliet and her Romeo."
 }
 
 comiscript = {
@@ -31,7 +35,8 @@ comiscript = {
 	"The answer is 42.",
 	"Yes !",
 	"No !",
-	"Maybe :-)"
+	"Maybe :-)",
+	"Let me tell you this joke..."
 }
 
 lg_tragiscript = #tragiscript
