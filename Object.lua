@@ -4,13 +4,24 @@ Object = class()
 
 -- List of sprites for objects, {tragi, comi}
 
-
+--[[
 objlist = {
 	{"decor1tragi","decor1comi"},
 	{"decor2tragi","decor2comi"},
 	{"decor3tragi","decor3comi"},
 	{"decor4tragi","decor4comi"},
 	{"decor5tragi","decor5comi"}
+}]]
+
+objlist = {
+	{"dec1t","dec1c"},
+	{"dec2t","dec2c"},
+	{"dec3t","dec3c"},
+	{"dec4t","dec4c"},
+	{"dec5t","dec5c"},
+	{"dec6t","dec6c"},
+	{"dec7t","dec7c"},
+	{"dec8t","dec8c"},
 }
 
 function Object:init(x,y,side)
@@ -35,7 +46,14 @@ function Object:draw()
 	local x,y,s = game.game2screen(self.x, self.y)
 	local spr = self:getsprite()
 	
-	CLR(255,255,255,100)
+	local alpha = 215
+	
+	if self.side == 1 then
+		CLR(181,215,234,alpha)
+	else
+		CLR(255,182,230,alpha)
+	end
+	
 	LG.setColorMode(love.color_modulate)
 	LG.draw(spr, x, y - spr:getHeight()/2*s, 0, s)
 	LG.setColorMode(love.color_normal)
