@@ -4,28 +4,32 @@ Dionysos = class()
 
 function Dionysos:init(target)
 	
-	self.pos = 0
 	self.spr = img.dionysos
 	self.target = target
 	
+	self.wait = 2
+	self.waitcount = self.wait
+	
 	self.fadeinit = 5
 	self.fadecount = self.fadeinit
+	
+	self.strike = false
 	
 	return self
 end
 
 function Dionysos:update(dt)
 	
-	local speed = 60
 	
-	if not self.strike and self.pos < self.spr:getHeight() then
+	if not self.strike then
+		self.waitcount = self.waitcount - dt
 	
-		self.pos = self.pos + speed * dt
+		if self.waitcount < 0 then
+			self.waitcount = 0
+			self.strike = true
+		end
+	
 	else
-		self.strike = true
-	end
-	
-	if self.strike then
 		self.fadecount = self.fadecount - dt
 		
 		if self.fadecount < 0 then
@@ -38,16 +42,20 @@ end
 
 function Dionysos:draw()
 
-	local x,y = W/2, 30	-- adjust from picture
-				-- we could even draw two, one from each hand
-
-	LG.draw(self.spr, W/2, self.pos - self.spr:getHeight()/2)
+	local x,y,s = game.game2screen(self.target.x, self.target.y)
+	
+	local fadein = (self.wait - self.waitcount)/self.wait
+	
+	CLR(255,255,255, fadein*255)
+	LG.setColorMode(love.color_modulate)
+	LG.draw(self.spr, x - 50*s, y - self.target:getsprite():getHeight()*s - 20 - self.spr:getHeight()/2/3, 0, 0.33)
+	LG.setColorMode(love.color_normal)
 	
 	if self.strike then
-		CLR(0,255,255)
-		local x2,y2,s = game.game2screen(self.target.x, self.target.y)
-		LG.line(x,y,x2,y2 - self.target:getsprite():getHeight()*s/2)
-	
+
+		-- kaboom
+		
+
 		-- fade screen
 		CLR(0,0,0, (self.fadeinit - self.fadecount)/self.fadeinit * 255)
 		LG.rectangle(love.draw_fill, 0, 0, W-1, H-1)
