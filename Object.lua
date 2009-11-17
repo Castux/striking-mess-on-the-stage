@@ -6,7 +6,11 @@ Object = class()
 
 
 objlist = {
-	{"seal1", "seal2"},
+	{"decor1tragi","decor1comi"},
+	{"decor2tragi","decor2comi"},
+	{"decor3tragi","decor3comi"},
+	{"decor4tragi","decor4comi"},
+	{"decor5tragi","decor5comi"}
 }
 
 function Object:init(x,y,side)
