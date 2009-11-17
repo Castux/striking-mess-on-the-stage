@@ -35,7 +35,7 @@ function Object:draw()
 	local x,y,s = game.game2screen(self.x, self.y)
 	local spr = self:getsprite()
 	
-	CLR(255,255,255,128)
+	CLR(255,255,255,100)
 	LG.setColorMode(love.color_modulate)
 	LG.draw(spr, x, y - spr:getHeight()/2*s, 0, s)
 	LG.setColorMode(love.color_normal)
