@@ -6,7 +6,11 @@ Object = class()
 
 
 objlist = {
-	{"seal1", "seal2"},
+	{"decor1tragi","decor1comi"},
+	{"decor2tragi","decor2comi"},
+	{"decor3tragi","decor3comi"},
+	{"decor4tragi","decor4comi"},
+	{"decor5tragi","decor5comi"}
 }
 
 function Object:init(x,y,side)
@@ -31,7 +35,10 @@ function Object:draw()
 	local x,y,s = game.game2screen(self.x, self.y)
 	local spr = self:getsprite()
 	
+	CLR(255,255,255,128)
+	LG.setColorMode(love.color_modulate)
 	LG.draw(spr, x, y - spr:getHeight()/2*s, 0, s)
+	LG.setColorMode(love.color_normal)
 end
 
 function Object:swap()

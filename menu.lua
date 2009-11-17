@@ -77,7 +77,8 @@ end
 
 
 function menu.init()
-
+	
+	LA.play(mus.Smots)
 end
 
 function menu.mousepressed(x,y,b)

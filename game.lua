@@ -143,7 +143,8 @@ function game.updateend(dt)
 	-- check if he's done striking, and go back to title
 	
 	if terminate then
-		love.system.restart()
+		--love.system.restart()
+		setGameState(menu)
 	end
 end
 
