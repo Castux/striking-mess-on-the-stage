@@ -5,7 +5,7 @@ Dionysos = class()
 function Dionysos:init(target)
 	
 	self.pos = 0
-	self.spr = img.musetragi
+	self.spr = img.dionysos
 	self.target = target
 	
 	self.fadeinit = 5
