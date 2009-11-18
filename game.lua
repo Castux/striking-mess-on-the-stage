@@ -140,6 +140,7 @@ function game.update(dt)
 	if game.badobjs == 0 or LK(love.key_b) then
 		
 		game.state = 'ENDGAME'
+		game.winner = team
 		
 		-- Create D, and direct it at the other muse
 		dionysos = Dionysos(muse)
@@ -148,8 +149,9 @@ function game.update(dt)
 	elseif game.badobjs == nb_objects then
 		
 		game.state = 'ENDGAME'
+		game.winner = foes
 		
-		-- Create D, and direct it at the player musee
+		-- Create D, and direct it at the player muse
 		dionysos = Dionysos(player)
 	end
 end
@@ -159,10 +161,10 @@ function game.updateend(dt)
 	local terminate = dionysos:update(dt)
 	
 	-- check if he's done striking, and go back to title
-	
+		
 	if terminate then
 		--love.system.restart()
-		setGameState(menu)
+		setGameState(endgame, game.winner)
 	end
 end
 
@@ -171,14 +173,14 @@ function game.draw()
 	-- Background
 	LG.draw(img.Decor, LG.getWidth()/2, LG.getHeight()/2)
 	
-	-- Scene boundaries
+	--[[ Scene boundaries
 	
 	CLR(0,0,255)
 	
 	for _,v in ipairs{{0,0},{W,0},{W,H},{0,H}} do
 		local x,y = game.game2screen(v[1],v[2])
 		LG.circle(love.draw_fill, x, y, 5)
-	end
+	end]]
 	
 	-- Sort entities back to front (increasing y)
 	

@@ -82,6 +82,7 @@ function Dionysos:draw()
 		-- fade screen
 		CLR(0,0,0, (self.fadeinit - self.fadecount)/self.fadeinit * 255)
 		LG.rectangle(love.draw_fill, 0, 0, W-1, H-1)
+		
 	end
 	
 	
