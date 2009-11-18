@@ -129,22 +129,21 @@ function menu.draw()
 	imgui_prepare()
 	
 	-- Background
-	CLR(200,100,50)
-	LG.rectangle(love.draw_fill,0,0,LG.getWidth()-1,LG.getHeight()-1)
+	LG.draw(img.ecrantitre,LG.getWidth()/2,LG.getHeight()/2)
 	
 	-- Difficulty selection
-	local H = floor(LG.getHeight() - img.niveau3:getHeight())/2
+	local H = 400
 
-	if button(1, 200, H, img.niveau1) then
+	if button(1, 500, H, img.niveau1) then
 		setGameState(game, 3, 10)
 	end
 	
-	if button(2, 300, H, img.niveau2) then
+	if button(2, 600, H, img.niveau2) then
 		setGameState(game, 6, 15)
 	end
 
-	if button(3, 400, H, img.niveau3) then
-		setGameState(game, 10, 20)
+	if button(3, 700, H, img.niveau3) then
+		setGameState(game, 12, 24)
 	end
 
 	
