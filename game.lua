@@ -44,11 +44,11 @@ function game.init(nactors, nobjects)
 		
 	-- Decide scene dimensions (screen coords) : any trapezoid
 	trap = {
-		x = 200,
-		y = 100,
-		w = 400,
-		W = 700,
-		h = 300
+		x = 290,
+		y = 225,
+		w = 430,
+		W = 820,
+		h = 390
 	}
 	
 	-- Make an entity list (entities are updated and drawn automatically)
@@ -169,8 +169,7 @@ end
 function game.draw()
 	
 	-- Background
-	CLR(0,200,100)
-	LG.rectangle(love.draw_fill, 0, 0, LG.getWidth(), LG.getHeight())
+	LG.draw(img.Decor, LG.getWidth()/2, LG.getHeight()/2)
 	
 	-- Scene boundaries
 	
