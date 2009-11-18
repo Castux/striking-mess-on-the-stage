@@ -113,6 +113,8 @@ end
 
 function Actor:swap()
 	
+	LA.play(snd.drums)
+	
 	-- will maybe have fancy animation later
 	
 	self.side = self.side == 1 and 2 or 1

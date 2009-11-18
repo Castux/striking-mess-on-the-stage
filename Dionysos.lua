@@ -45,6 +45,9 @@ function Dionysos:update(dt)
 		if self.waitcount < 0 then
 			self.waitcount = 0
 			self.strike = true
+			
+			LA.stop()
+			LA.play(snd.explo)
 		end
 	
 	else
