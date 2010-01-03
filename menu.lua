@@ -149,3 +149,10 @@ function menu.draw()
 	
 	imgui_finish()
 end
+
+function menu.keypressed(k)
+	
+	if k == love.key_escape then
+		love.system.exit()
+	end
+end
